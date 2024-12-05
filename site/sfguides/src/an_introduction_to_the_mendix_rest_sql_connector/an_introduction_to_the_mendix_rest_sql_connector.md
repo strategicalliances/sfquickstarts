@@ -221,8 +221,10 @@ Employee
      -  Double-click the "ParsedDate" value and change the Member value to "Date_of_Birth_Parsed".
      -  Click **New** to add a new Member and choose the association *MyFirstModule.Employee_Table*. Set the value as *$NewTable*.
  - After retrieving the data, we would like to display the results on a new page. To so this, please find the **Show Page** action in the **Toolbox** tab of the right side window and drag it into the microflow after the loop. Open the action and click on **Select** to select the page to display. Click on **New** and select *NewTable* as the **Argument** value. You can select any of the options to create the page as we will edit it in the next step.
+  
+![Retrieve Employee Info](assets/retrieve_employee_info.png)
 
-1. As the microflow is complete, let's prepare the display.
+5. As the microflow is complete, let's prepare the display.
 - Find the newly created page on the left-side window and rename it to Table_Display.
 - Open it and delete the **Save** and **Cancel** buttons.
 - In the **Toolbox** tab of the right side window, find **Data grid** and drag it into Table data view.
@@ -230,7 +232,7 @@ Employee
 ![Add Data Grid](assets/add_datagrid.png)
 
  - Double-click the newly added data grid and go to the **Data source** tab. Change the type to **Association** and select the entity *Employee*. You can find the entity by double-clicking on Table and opening the association or using the search. Click **OK**.
- - 
+  
 ![Select Employee](assets/datagrid_select_employee.png)
 
  - A question will pop up: Do you want to automatically fill the contents of the data grid? Click **Yes**.
@@ -274,9 +276,11 @@ Now, we will extend our module to be able to edit the existing data in Snowflake
  - The third and fourth components are to retrieve the authentication token and execute the statement in Snowflake and can stay as they are.
  - The rest of the components can be deleted. 
  - Let's add the microflow we created in Step 4 to the end of this microflow. Then we can retrieve the employee information again and check the changes.
+  
+![Update Employee Info](assets/update_employee_info.png)
 
-1. Open the "Employee_Edit" page and double-click on the **Save** button. Change the **On-click** event to *Call a microflow* and select *ACT_UpdateEmployeeInfo* so that this microflow will be triggered whenever the information is changed and the **Save** button is clicked.
-2. Run the application and test the functionalities of these buttons to update information in your Snowflake environment.
+6. Open the "Employee_Edit" page and double-click on the **Save** button. Change the **On-click** event to *Call a microflow* and select *ACT_UpdateEmployeeInfo* so that this microflow will be triggered whenever the information is changed and the **Save** button is clicked.
+7. Run the application and test the functionalities of these buttons to update information in your Snowflake environment.
 
 
 
