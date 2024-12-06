@@ -241,7 +241,7 @@ Employee
 
 7. Run the application and click on this button to retrieve and display the employee information from Snowflake.
 
-
+![Employee Table](assets/table_display.png)
 
 <!-- ------------------------ -->
 ## Updating Snowflake Data From Within Mendix
@@ -282,7 +282,7 @@ Now, we will extend our module to be able to edit the existing data in Snowflake
 6. Open the "Employee_Edit" page and double-click on the **Save** button. Change the **On-click** event to *Call a microflow* and select *ACT_UpdateEmployeeInfo* so that this microflow will be triggered whenever the information is changed and the **Save** button is clicked.
 7. Run the application and test the functionalities of these buttons to update information in your Snowflake environment.
 
-
+![Edit Employee Info](assets/employee_edit.png)
 
 <!-- ------------------------ -->
 ## Conclusion And Resources
