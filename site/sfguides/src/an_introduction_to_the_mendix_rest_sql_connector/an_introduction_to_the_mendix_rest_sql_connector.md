@@ -10,15 +10,17 @@ tags: Getting Started, Data Science, Data Engineering, Connectors, Native Apps, 
 ## Overview
 Duration: 5
 
-In this quickstart, we’ll guide you through the process of setting up a secure connection, retrieving data already stored in Snowflake and seamlessly integrate it back into the Mendix environment.
+In this quickstart, we will guide you through the process of setting up a secure connection, retrieving data stored in Snowflake and seamlessly integrating it into a Mendix application.
 
-[Mendix](https://www.mendix.com/snowflake/) is a low code application development platform that will allow you to quickly easily develop enterprise applications. Compared to [Snowflake native apps](https://docs.snowflake.com/en/developer-guide/native-apps/native-apps-about) built with [Streamlit](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit), Mendix allows for more custom user interfaces and multi-experiences for all forms of interaction like websites and mobile applications. Mendix applications typically support full workflows for business applications and can be deployed everywhere, shopfloor, on edge, central IT or in the cloud.
+[Mendix](https://www.mendix.com/snowflake/) is a low code application development platform that will allow you to quickly easily develop enterprise applications. Compared to [Snowflake native apps](https://docs.snowflake.com/en/developer-guide/native-apps/native-apps-about) built with [Streamlit](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit), Mendix allows for more custom user interfaces and multi-experiences for all forms of interaction like websites and mobile applications. Mendix applications typically support full workflows for business applications and support multiple deployment options, including public cloud, private cloud, on-premises and on-edge deployment.
 
 Streamlit is tailored for developers and data analysts, requiring Python expertise to create dashboards. In contrast, Mendix focuses more on business applications, enabling users to build mobile-ready apps and responsive websites without any coding. Additionally, the Mendix Marketplace offers a wide range of ready-to-use frontend widgets and connectors.
 
 ![Mendix Snowflake Connectors](assets/mendix_snowflake_connectors.png)
 
-This quickstart will equip you with the knowledge and tools needed to achieve seamless data integration between Mendix and Snowflake. Within Mendix two Snowflake connectors are provided, the [External Database Connector](https://marketplace.mendix.com/link/component/219862) and the [Snowflake REST SQL Connector](https://marketplace.mendix.com/link/component/225717). In this quickstart, we will be focusing on the Snowflake REST SQL Connector. Another Mendix-Snowflake connector can be found in the Snowflake Marketplace that enables users to easily import Mendix application data into their Snowflkae evironement. Click here to see the [Mendix Data Loader Quickstart](https://quickstarts.snowflake.com/guide/mendix_data_loader/index.html#0).
+This quickstart will equip you with the knowledge and tools needed to achieve seamless data integration between Mendix and Snowflake. Within Mendix two Snowflake connectors are provided, the [External Database Connector](https://marketplace.mendix.com/link/component/219862) and the [Snowflake REST SQL Connector](https://marketplace.mendix.com/link/component/225717)connecting Mendix to Snowflake. Conversely, Mendix has developed the Mendix Data Loader, connecting a Snowflake environment to a Mendix application. To learn more about the Mendix Data Loader, see [Mendix Data Loader Quickstart](https://quickstarts.snowflake.com/guide/mendix_data_loader/index.html#0).
+
+This quickstart will focus on the Snowflake REST SQL Connector.
 
 The Snowflake REST SQL connector provides a way to set up key-pair authentication with an RSA key pair according to the PKCS #8 standard or with OAuth, and then execute SQL statements on Snowflake via a REST call from within your Mendix application. These statements allow you to perform the following tasks:
 
@@ -28,16 +30,16 @@ The Snowflake REST SQL connector provides a way to set up key-pair authenticatio
   - Use Snowflake Cortex LLM functions
   - Use Snowflake Cortex Analyst
 
-For Snowflake Cortex related functionalities, the account used must be in a region where Snowflake Cortex and Arctic are available. [Please check availability](https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions#label-cortex-llm-availability). We will deal with Cortex AI specific examples in a future quickstart but you can take a look at the documentation [here](https://docs.mendix.com/appstore/connectors/snowflake/snowflake-rest-sql/#cortex-analyst).
+For Snowflake Cortex related functionalities, the account used must be in a region where Snowflake Cortex and Arctic are available, consult the [Snowflake documentation](https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions#label-cortex-llm-availability) for more information. We will deal with Cortex AI specific examples in a future quickstart but you can take a look at the documentation [here](https://docs.mendix.com/appstore/connectors/snowflake/snowflake-rest-sql/#cortex-analyst).
 
 ### What You’ll Accomplish
-- How to establish a connection between a Mendix application and a Snowflake database
-- How to execute single SQL statements in Snowflake from a Mendix application   
-- How to read data from a Snowflake environment and present it within a Mendix application
-- How to update Snowflake data within a Mendix application 
+- To establish a connection between a Mendix application and a Snowflake database
+- To execute single SQL statements in Snowflake from a Mendix application   
+- To read data from a Snowflake environment and present it within a Mendix application
+- To update Snowflake data within a Mendix application 
 
 ### Prerequisites
-- Mendix account, if you don't have one sign up [here](https://signup.mendix.com/).
+- A Mendix account, sign up [here](https://signup.mendix.com/).
 - Mendix Studio Pro ([9.24.2](https://marketplace.mendix.com/link/studiopro/9.24.2) or later)
 - A [Snowflake](https://www.snowflake.com/) account
 
@@ -52,7 +54,9 @@ For Snowflake Cortex related functionalities, the account used must be in a regi
 ## Setting Up Your Snowflake Environment
 Duration: 5
 
-In the coming steps of this quickstart, we will cover how to read, update and display Snowflake data in a Mendix application. To see the possibilities of Mendix and Snowflake together and ensure the effectiveness of the upcoming steps, please run the following lines in a Snowflake worksheet to set up a database, schema and table to work with:
+In the next steps, we will cover how to read, update and display Snowflake data in a Mendix application. To see the possibilities of Mendix and Snowflake together, start by creating a database, schema, table and insert some data into these tables.
+
+Run the following lines in a Snowflake worksheet to set up a database, schema and table: 
 
 ```sql
 CREATE OR REPLACE DATABASE DATABASE_QUICKSTART;
@@ -80,15 +84,15 @@ INSERT INTO DATABASE_QUICKSTART.SCHEMA_QUICKSTART.EMPLOYEE_INFO(EMPLOYEE_ID, NAM
 ## Setting Up Your Mendix Environment
 Duration: 10
 
-Mendix has a descriptive quickstart about [Building a Responsive Web App](https://docs.mendix.com/quickstarts/responsive-web-app/). If you have time, we recommend going through the quickstart or you can keep the quickstart open on the side to search for any unfamiliar terms that might come up in the instructions below.
+Mendix has a descriptive quickstart about [Building a Responsive Web App](https://docs.mendix.com/quickstarts/responsive-web-app/). We recommend going through the Mendix quickstart or to keep the quickstart open on the side to search for any unfamiliar terms that might come up in the instructions below.
 
 1. Install a version of Mendix Studio Pro 9.24.2 or higher [here](https://marketplace.mendix.com/link/studiopro). Please note that you will need a [Mendix account](https://signup.mendix.com/) to use Mendix.
-2. Open it and create a new app. You can choose "Blank Web App" as the starting point.
+2. Open it and create a new app. Choose "Blank Web App" as the starting point.
 3. Download the latest Snowflake REST SQL Connector into your application from the Mendix Marketplace.
 
 ![Mendix Marketplace](assets/mendix_marketplace.png)
 
-When the download is completed, some errors will be found because dependency modules of the Snowflake REST SQL Connector also need to be downloaded into the application. All these downloads will be done inside Mendix Studio Pro and do not require any external installation.
+When the download is completed, some errors will occur because dependency modules of the Snowflake REST SQL Connector also need to be downloaded into the application. All these downloads will be done inside Mendix Studio Pro and do not require any external installation.
 
 4. Download the latest [GenAI Commons](https://marketplace.mendix.com/link/component/227933), [Encryption](https://marketplace.mendix.com/link/component/1011) and [Community Commons](https://marketplace.mendix.com/link/component/170) modules into your application from the Mendix Marketplace. To be able to use the functionalities of the Encryption module, the **EncryptionKey** and **EncryptionPrefix** constants must be set, for more detailed information please take a look [here](https://docs.mendix.com/appstore/modules/encryption/#configuration).
 
@@ -120,7 +124,7 @@ To make it easier for users to configure the key-pair authentication in a Mendix
 ![Connection Details](assets/connection_details.png)
 
 <!-- ------------------------ -->
-## Getting To Know the Snowflake REST SQL Connector
+## Getting to Know the Snowflake REST SQL Connector
 Duration: 10
 
 After you configure the authentication for Snowflake, you can implement the functions of the connector by using the provided activities in microflows. 
@@ -246,7 +250,7 @@ Employee
 ![Employee Table](assets/table_display.png)
 
 <!-- ------------------------ -->
-## Updating Snowflake Data From Within Mendix
+## Updating Snowflake Data from Within Mendix
 Duration: 15
 
 Now, we will extend our module to be able to edit the existing data in Snowflake.
@@ -319,7 +323,7 @@ Duration: 10
 You can now use the microflows to retrieve and update Snowflake data from within Mendix.
 
 <!-- ------------------------ -->
-## Conclusion And Resources
+## Conclusion and Resources
 
 Congratulations! You've successfully used the Snowflake REST SQL Connector and executed SQL statements in Snowflake from within a Mendix application.
 
