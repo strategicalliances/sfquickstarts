@@ -106,7 +106,10 @@ In order to use the capabilities of Snowflake in a Mendix app with the Snowflake
 To make it easier for users to configure the key-pair authentication in a Mendix application, the Snowflake REST SQL connector includes pages and microflows that you can simply drag and drop into your own modules.
 
 6. Set up key-pair authentication in Mendix.
-     - In the **App Explorer**, under the **SnowflakeRESTSQL** section, find the **SNIPPET_SnowflakeConfiguration** snippet and drag and drop it into a page in your module, for example **Home_Web** in **MyFirstModule**
+     - Open the **Home_Web** in **MyFirstModule**
+     - Navigate to the **Security** settings and update it to **production** for the current application.
+     - In the **App Explorer**, under the **SnowflakeRESTSQL** section, find the **SNIPPET_SnowflakeConfiguration** snippet under the **ConnectionDetails** and drag and drop it into the page.
+     - Navigate to your application settings
      - If security has been enabled in the application, to be able to use the functionality in this snippet, give your user role access by assigning the module role **SnowflakeRESTSQL.Administrator** to the application role that will be used to set up the configuration.
      - Run the application and then *View App*. 
      - ![Run Mendix Application](assets/run_application.png)
