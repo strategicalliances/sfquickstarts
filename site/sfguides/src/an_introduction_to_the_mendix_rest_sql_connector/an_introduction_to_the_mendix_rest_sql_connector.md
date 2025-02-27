@@ -40,7 +40,7 @@ For Snowflake Cortex related functionalities, the account used must be in a regi
 
 ### Prerequisites
 - A Mendix account, sign up [here](https://signup.mendix.com/).
-- Mendix Studio Pro ([9.24.2](https://marketplace.mendix.com/link/studiopro/9.24.2) or later)
+- Mendix Studio Pro [9.24.2](https://marketplace.mendix.com/link/studiopro/9.24.2) or later (Note that for the purposes of this quickstart we recommend to use Mendix Studio Pro version 9.24.2).
 - A [Snowflake](https://www.snowflake.com/) account
 
 ### What You’ll Build
@@ -86,7 +86,7 @@ Duration: 10
 
 Mendix has a descriptive quickstart about [Building a Responsive Web App](https://docs.mendix.com/quickstarts/responsive-web-app/). We recommend going through the Mendix quickstart or to keep the quickstart open on the side to search for any unfamiliar terms that might come up in the instructions below.
 
-1. Install a version of Mendix Studio Pro 9.24.2 or higher [here](https://marketplace.mendix.com/link/studiopro). Please note that you will need a [Mendix account](https://signup.mendix.com/) to use Mendix.
+1. If you are a Windows user download the installer for Mendix Studio Pro 9.24.2 [here]((https://marketplace.mendix.com/link/studiopro/9.24.2)) and install it to your system. If you are a MacOS user download the latest version of Mendix Studio Pro [here](https://marketplace.mendix.com/link/studiopro). Please note that you will need a [Mendix account](https://signup.mendix.com/) to use Mendix.
 2. Open it and create a new app. Choose "Blank Web App" as the starting point.
 3. Download the latest Snowflake REST SQL Connector into your application from the Mendix Marketplace.
 
@@ -95,6 +95,8 @@ Mendix has a descriptive quickstart about [Building a Responsive Web App](https:
 When the download is completed, some errors will occur because dependency modules of the Snowflake REST SQL Connector also need to be downloaded into the application. All these downloads will be done inside Mendix Studio Pro and do not require any external installation.
 
 4. Download the latest [GenAI Commons](https://marketplace.mendix.com/link/component/227933), [Encryption](https://marketplace.mendix.com/link/component/1011) and [Community Commons](https://marketplace.mendix.com/link/component/170) modules into your application from the Mendix Marketplace. To be able to use the functionalities of the Encryption module, the **EncryptionKey** and **EncryptionPrefix** constants must be set, for more detailed information please take a look [here](https://docs.mendix.com/appstore/modules/encryption/#configuration).
+
+If you are not using Mendix Studio Pro 9,24,2 you might get some errors that need to be solved before you can continue due to migration of the downloaded appstore modules. Navigate to the **Errors** panel and resolve the errors (most likely by right clicking on them and updating widgets).
 
 In order to use the capabilities of Snowflake in a Mendix app with the Snowflake REST SQL connector, an authentication method must be set up. For example purposes, we will set up a key-pair authentication method.
 
@@ -105,10 +107,14 @@ In order to use the capabilities of Snowflake in a Mendix app with the Snowflake
   
 To make it easier for users to configure the key-pair authentication in a Mendix application, the Snowflake REST SQL connector includes pages and microflows that you can simply drag and drop into your own modules.
 
-6. Set up key-pair authentication in Mendix.
-     - In the **App Explorer**, under the **SnowflakeRESTSQL** section, find the **SNIPPET_SnowflakeConfiguration** snippet and drag and drop it into a page in your module, for example **Home_Web** in **MyFirstModule**
-     - If security has been enabled in the application, to be able to use the functionality in this snippet, give your user role access by assigning the module role **SnowflakeRESTSQL.Administrator** to the application role that will be used to set up the configuration.
-     - Run the application and then *View App*. 
+Place holder text for initial mpk (Without certificate ofc).
+
+6. Set up key-pair authentication in Mendix. If you need any help with with how to create pages or on how to configure security you can have have a look at the [rapid developer learning paths](https://academy.mendix.com/link/paths) provided by Mendix for free!
+     - Right click on the **MyFirstModule** module and click the add page button to add a new blank page. Call it **Configuration_Page** and navigate to **Navigation** in the app explorer and add the page to your navigation.
+     - Solve the resulting error by navigating to the **configuration_Page** you have created and in the page properties under the Navigation section select Vissible for **User** and click OK.
+     - In the **App Explorer**, under the **SnowflakeRESTSQL** section, find the **SNIPPET_SnowflakeConfiguration** snippet and drag and drop it into the page you have just created.
+     - If security has been enabled in the application, to be able to use the functionality in this snippet, give your user role access by assigning the module role **SnowflakeRESTSQL.Administrator** to the application roles that will be used to set up the configuration.
+     - Run the application and then *View App*. Place holder text for .mpk 2 with page implemented. 
      - ![Run Mendix Application](assets/run_application.png)
      - Go to the page where you added the snippet
      - Click **New**
