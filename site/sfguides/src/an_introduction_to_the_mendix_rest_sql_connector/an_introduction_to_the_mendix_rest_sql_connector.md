@@ -232,14 +232,13 @@ Employee
    - In the *Change Object* component:
      -  Double-click the "ParsedDate" value and change the Member value to "Date_of_Birth_Parsed".
      -  Click **New** to add a new Member and choose the association *MyFirstModule.Employee_Table*. Set the value as *$NewTable*.
- - After retrieving the data, we would like to display the results on a new page. To so this, please find the **Show Page** action in the **Toolbox** tab of the right side window and drag it into the microflow after the loop. Open the action and click on **Select** to select the page to display. Click on **New** and select *NewTable* as the **Argument** value. You can select any of the options to create the page as we will edit it in the next step.
   
 ![Retrieve Employee Info](assets/retrieve_employee_info.png)
 
-5. As the microflow is complete, let's prepare the display.
-- Find the newly created page on the left-side window and rename it to Table_Display.
-- Open it and delete the **Save** and **Cancel** buttons.
-- In the **Toolbox** tab of the right side window, find **Data grid** and drag it into Table data view.
+5. As the microflow is almost complete, let's prepare the display.
+- Create a new Blank page and call it **Table_Display**.
+- Open it and drag a **Data view** from the **Toolbox** onto the page and select the *Table* entity as the data source from Context.
+- In the **Toolbox** tab of the right side window, find **Data grid** and drag it into *Table* data view.
 
 ![Add Data Grid](assets/add_datagrid.png)
 
@@ -249,11 +248,14 @@ Employee
 
  - A question will pop up: Do you want to automatically fill the contents of the data grid? Click **Yes**.
 
-6. We have now configured the microflow to retrieve information from the table and the page that will be used to diplay this information. Now, we need to add an action button that will trigger the retrieve call to Snowflake. Open the page **Home_Web** and under the previously added snippet, add a **Call microflow button**  widget from the **Toolbox**. Choose *ACT_RetrieveEmployeeInfo* as the microflow to trigger and rename it to *Retrieve employee info*.
-
-7. Run the application and click on this button to retrieve and display the employee information from Snowflake.
+6. We have now configured the microflow to retrieve information from the table and the page that will be used to diplay this information. Now, we need to add an action button that will trigger the retrieve call to Snowflake and will open the **Table_Display** page. Open the page **Home_Web** and add a **Call microflow button**  widget from the **Toolbox**. Choose *ACT_Employee_RetrieveAndShow* as the microflow to trigger and rename it to *Retrieve and Show Employee Info*.
+7. At the very end of the *ACT_Employee_RetrieveAndShow* microflow add a **Show page** operation and select the *Table Display* page and press OK.
+8. In the microflow properties give access to the User role to solve the error that has popped up. Additional errors related to the data view and datagrid on the **Table_Display** page. Solve these by Navigating to the domain model and giving read rights to all attributes of the *Employee* entity and Create rights to the *Table* entity.
+9. Run the application and click on this button to retrieve and display the employee information from Snowflake.
 
 ![Employee Table](assets/table_display.png)
+
+Placeholder text for .mpk 3
 
 <!-- ------------------------ -->
 ## Updating Snowflake Data from Within Mendix
@@ -296,6 +298,8 @@ Now, we will extend our module to be able to edit the existing data in Snowflake
 7. Run the application and test the functionalities of these buttons to update information in your Snowflake environment.
 
 ![Edit Employee Info](assets/employee_edit.png)
+
+Placeholder text for .MPK nr 4
 
 <!-- ------------------------ -->
 ## (Optional) Deploy the Mendix Application
