@@ -250,7 +250,7 @@ Employee
 
 6. We have now configured the microflow to retrieve information from the table and the page that will be used to diplay this information. Now, we need to add an action button that will trigger the retrieve call to Snowflake and will open the **Table_Display** page. Open the page **Home_Web** and add a **Call microflow button**  widget from the **Toolbox**. Choose *ACT_Employee_RetrieveAndShow* as the microflow to trigger and rename it to *Retrieve and Show Employee Info*.
 7. At the very end of the *ACT_Employee_RetrieveAndShow* microflow add a **Show page** operation and select the *Table Display* page and press OK.
-8. In the microflow properties give access to the User role to solve the error that has popped up. Additional errors related to the data view and datagrid on the **Table_Display** page. Solve these by Navigating to the domain model and giving read rights to all attributes of the *Employee* entity and Create rights to the *Table* entity.
+8. In the microflow properties give access to the User role to solve the error that has popped up. Now additional errors related to the data view and datagrid on the **Table_Display** page will appear. Solve these by Navigating to the domain model and giving read rights to all attributes of the *Employee* entity by double clicking the entity and navigating to the **Access rules** tab. Here you can create new access rules by pressing the new button and you will need to give all attributes read rights. Since the Table entity doesn't have attributes please give the entity Create rights to solve the errors related to the *Table* entity.
 9. Run the application and click on this button to retrieve and display the employee information from Snowflake.
 
 ![Employee Table](assets/table_display.png)
