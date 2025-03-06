@@ -96,6 +96,10 @@ When the download is completed, some errors will occur because dependency module
 
 4. Download the latest [GenAI Commons](https://marketplace.mendix.com/link/component/227933), [Encryption](https://marketplace.mendix.com/link/component/1011) and [Community Commons](https://marketplace.mendix.com/link/component/170) modules into your application from the Mendix Marketplace. To be able to use the functionalities of the Encryption module, the **EncryptionKey** and **EncryptionPrefix** constants must be set, for more detailed information please take a look [here](https://docs.mendix.com/appstore/modules/encryption/#configuration).
 
+We have included a few .mpk files where previous steps have been implemented which you can use as a reference or when you get stuck along the way. The certificate you need to connect to Snowflake environment isn't included for obvious reasons and connection details will have to be configured in any of these .mpk files.
+
+[Download .mpk](assets/REST_SQL_Quickstart.mpk "download")
+
 If you are not using Mendix Studio Pro 9,24,2 you might get some errors that need to be solved before you can continue due to migration of the downloaded appstore modules. Navigate to the **Errors** panel and resolve the errors (most likely by right clicking on them and updating widgets).
 
 In order to use the capabilities of Snowflake in a Mendix app with the Snowflake REST SQL connector, an authentication method must be set up. For example purposes, we will set up a key-pair authentication method.
@@ -107,14 +111,15 @@ In order to use the capabilities of Snowflake in a Mendix app with the Snowflake
   
 To make it easier for users to configure the key-pair authentication in a Mendix application, the Snowflake REST SQL connector includes pages and microflows that you can simply drag and drop into your own modules.
 
-Place holder text for initial mpk (Without certificate ofc).
-
 6. Set up key-pair authentication in Mendix. If you need any help with with how to create pages or on how to configure security you can have have a look at the [rapid developer learning paths](https://academy.mendix.com/link/paths) provided by Mendix for free!
      - Right click on the **MyFirstModule** module and click the add page button to add a new blank page. Call it **Configuration_Page** and navigate to **Navigation** in the app explorer and add the page to your navigation.
      - Solve the resulting error by navigating to the **configuration_Page** you have created and in the page properties under the Navigation section select Vissible for **User** and click OK.
      - In the **App Explorer**, under the **SnowflakeRESTSQL** section, find the **SNIPPET_SnowflakeConfiguration** snippet and drag and drop it into the page you have just created.
      - If security has been enabled in the application, to be able to use the functionality in this snippet, give your user role access by assigning the module role **SnowflakeRESTSQL.Administrator** to the application roles that will be used to set up the configuration.
-     - Run the application and then *View App*. Place holder text for .mpk 2 with page implemented. 
+     - Run the application and then *View App*.
+
+       Place holder text for .mpk 2 with page implemented.
+       
      - ![Run Mendix Application](assets/run_application.png)
      - Go to the page where you added the snippet
      - Click **New**
@@ -250,12 +255,12 @@ Employee
 
 6. We have now configured the microflow to retrieve information from the table and the page that will be used to diplay this information. Now, we need to add an action button that will trigger the retrieve call to Snowflake and will open the **Table_Display** page. Open the page **Home_Web** and add a **Call microflow button**  widget from the **Toolbox**. Choose *ACT_Employee_RetrieveAndShow* as the microflow to trigger and rename it to *Retrieve and Show Employee Info*.
 7. At the very end of the *ACT_Employee_RetrieveAndShow* microflow add a **Show page** operation and select the *Table Display* page and press OK.
-8. In the microflow properties give access to the User role to solve the error that has popped up. Now additional errors related to the data view and datagrid on the **Table_Display** page will appear. Solve these by Navigating to the domain model and giving read rights to all attributes of the *Employee* entity by double clicking the entity and navigating to the **Access rules** tab. Here you can create new access rules by pressing the new button and you will need to give all attributes read rights. Since the Table entity doesn't have attributes please give the entity Create rights to solve the errors related to the *Table* entity.
+8. In the microflow properties give access to the *User* role to solve the error that has popped up. Now additional errors related to the data view and datagrid on the **Table_Display** page will appear. Solve these by Navigating to the domain model and giving read rights to all attributes of the *Employee* entity by double clicking the entity and navigating to the **Access rules** tab. Here you can create new access rules by pressing the new button and you will need to give all attributes read rights. Since the Table entity doesn't have attributes please give the entity Create rights to solve the errors related to the *Table* entity.
 9. Run the application and click on this button to retrieve and display the employee information from Snowflake.
 
 ![Employee Table](assets/table_display.png)
 
-Placeholder text for .mpk 3
+Placeholder text for .mpk 3. Please remember to configure connection details when using this .mpk.
 
 <!-- ------------------------ -->
 ## Updating Snowflake Data from Within Mendix
@@ -269,8 +274,9 @@ Now, we will extend our module to be able to edit the existing data in Snowflake
 ![Edit Button](assets/datagrid_edit_button.png)
 3. Open the new page and delete the text box for "Employee_ID". This is a unique ID that will be given to employees and should never be edited.
 4. Next, delete the text box for "Date_Of_Birth". This is a long value that is retrived from Snowflake which is then converted to Date and time. We will use the "Date_Of_Birth_Parsed" and convert it to the correct format in the microflow that will be triggered.
-5. We need to now configure the microflow that will enable us to update the information in the Snowflake table.
-  - Duplicate the **EXAMPLE_ExecuteStatement** microflow into your module and rename it to something like ACT_UpdateEmployeeInfo
+5. Navigate to the *Properties* of the page and in the *Navigation* section for *Visible for* select *User* to give the user access to the page and solve the security error.
+6. We need to now configure the microflow that will enable us to update the information in the Snowflake table.
+  - Duplicate the **EXAMPLE_ExecuteStatement** microflow into your module and rename it to something like *ACT_Employee_Update*
   - Add a **Parameter** above the microflow from the **Toolbox**. **Name** is *Employee* and as the **Data type** keep *Object*. Click on **Select** and choose *Employee* as the entity.
   - The first component in the microflow is the *Create Statement* action. Let's edit this to be relevant to our needs.
 ```
@@ -294,7 +300,7 @@ Now, we will extend our module to be able to edit the existing data in Snowflake
   
 ![Update Employee Info](assets/update_employee_info.png)
 
-6. Open the "Employee_Edit" page and double-click on the **Save** button. Change the **On-click** event to *Call a microflow* and select *ACT_UpdateEmployeeInfo* so that this microflow will be triggered whenever the information is changed and the **Save** button is clicked.
+6. Open the "Employee_Edit" page and double-click on the **Save** button. Change the **On-click** event to *Call a microflow* and select *ACT_Employee_Update* so that this microflow will be triggered whenever the information is changed and the **Save** button is clicked.
 7. Run the application and test the functionalities of these buttons to update information in your Snowflake environment.
 
 ![Edit Employee Info](assets/employee_edit.png)
@@ -324,7 +330,7 @@ Duration: 10
 ![Deploying your Mendix application](assets/publish.png)
 
 9. Add your authentication method in the homepage after logging in.
-10. Go back to Mendix Studio Pro and configure your Snowflake information in *ACT_RetrieveEmployeeInfo* and *ACT_UpdateEmployeeInfo*. 
+10. Go back to Mendix Studio Pro and configure your Snowflake information in *ACT_RetrieveEmployeeInfo* and *ACT_Employee_Update*. 
   
 ![Configure Microflows](assets/configure_snowflake_info.png)
 
