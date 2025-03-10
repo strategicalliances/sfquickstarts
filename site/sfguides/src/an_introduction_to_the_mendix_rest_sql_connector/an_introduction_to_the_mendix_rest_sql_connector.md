@@ -42,6 +42,7 @@ For Snowflake Cortex related functionalities, the account used must be in a regi
 - A Mendix account, sign up [here](https://signup.mendix.com/).
 - Mendix Studio Pro [9.24.2](https://marketplace.mendix.com/link/studiopro/9.24.2) or later (Note that for the purposes of this quickstart we recommend to use Mendix Studio Pro version 9.24.2).
 - A [Snowflake](https://www.snowflake.com/) account
+- If you get stuck on some steps in this quickstart we advice to do the [Rapid developer learning paths](https://academy.mendix.com/link/paths) or use the provided .mpk files. (Optional)
 
 ### What You’ll Build
 - A basic Mendix application with method to communicate with Snowflake
@@ -217,8 +218,9 @@ Employee
 ![Table-Employee Association](assets/table_employee_association.png)
 
 4. After the entities are created, we need to configure the microflow that will enable us to retrieve the information from the table and display it.
-- Duplicate the **EXAMPLE_ExecuteStatement** microflow into your module and rename it to ACT_RetrieveEmployeeInfo.
-- The first component in the microflow is the *Create Statement* action. Let's edit this to be relevant to our needs.
+- Duplicate the **EXAMPLE_ExecuteStatement** microflow into your module and rename it to *Employee_Retrieve*.
+- Create a new microflow by right clicking the *MyFirstModule* module and choosing the **Add microflow** option. Call it *ACT_Employee_RetrieveAndShow* and drag in the *Employee_Retrieve* microflow from the **App Explore**.
+- The first component in the *Employee_Retrieve* microflow is the *Create Statement* action. Let's edit this to be relevant to our needs.
 ```
 - SQLStatement: 'SELECT * FROM EMPLOYEE_INFO'
 - Database: 'DATABASE_QUICKSTART'
@@ -237,6 +239,7 @@ Employee
    - In the *Change Object* component:
      -  Double-click the "ParsedDate" value and change the Member value to "Date_of_Birth_Parsed".
      -  Click **New** to add a new Member and choose the association *MyFirstModule.Employee_Table*. Set the value as *$NewTable*.
+- Set the *$NewTable* variable as return value of the microflow by right clicking the **Create Table** action and choosing the **Set $NewTable as return value** option.
   
 ![Retrieve Employee Info](assets/retrieve_employee_info.png)
 
@@ -254,7 +257,10 @@ Employee
  - A question will pop up: Do you want to automatically fill the contents of the data grid? Click **Yes**.
 
 6. We have now configured the microflow to retrieve information from the table and the page that will be used to diplay this information. Now, we need to add an action button that will trigger the retrieve call to Snowflake and will open the **Table_Display** page. Open the page **Home_Web** and add a **Call microflow button**  widget from the **Toolbox**. Choose *ACT_Employee_RetrieveAndShow* as the microflow to trigger and rename it to *Retrieve and Show Employee Info*.
-7. At the very end of the *ACT_Employee_RetrieveAndShow* microflow add a **Show page** operation and select the *Table Display* page and press OK.
+7. Double click the *Employee_Retrieve* microflow call action and in the *output* section set the object name to *Table* and press *OK*. At the end of the *ACT_Employee_RetrieveAndShow* microflow add a **Show page** operation and select the *Table Display* page and press OK.
+
+![Placeholder ACT_Employee_RetrieveAndShow](assets/table_display.png)
+
 8. In the microflow properties give access to the *User* role to solve the error that has popped up. Now additional errors related to the data view and datagrid on the **Table_Display** page will appear. Solve these by Navigating to the domain model and giving read rights to all attributes of the *Employee* entity by double clicking the entity and navigating to the **Access rules** tab. Here you can create new access rules by pressing the new button and you will need to give all attributes read rights. Since the Table entity doesn't have attributes please give the entity Create rights to solve the errors related to the *Table* entity.
 9. Run the application and click on this button to retrieve and display the employee information from Snowflake.
 
@@ -276,7 +282,7 @@ Now, we will extend our module to be able to edit the existing data in Snowflake
 4. Next, delete the text box for "Date_Of_Birth". This is a long value that is retrived from Snowflake which is then converted to Date and time. We will use the "Date_Of_Birth_Parsed" and convert it to the correct format in the microflow that will be triggered.
 5. Navigate to the *Properties* of the page and in the *Navigation* section for *Visible for* select *User* to give the user access to the page and solve the security error.
 6. We need to now configure the microflow that will enable us to update the information in the Snowflake table.
-  - Duplicate the **EXAMPLE_ExecuteStatement** microflow into your module and rename it to something like *ACT_Employee_Update*
+  - Duplicate the **EXAMPLE_ExecuteStatement** microflow into your module and rename it to something like *Employee_Update*
   - Add a **Parameter** above the microflow from the **Toolbox**. **Name** is *Employee* and as the **Data type** keep *Object*. Click on **Select** and choose *Employee* as the entity.
   - The first component in the microflow is the *Create Statement* action. Let's edit this to be relevant to our needs.
 ```
@@ -300,8 +306,12 @@ Now, we will extend our module to be able to edit the existing data in Snowflake
   
 ![Update Employee Info](assets/update_employee_info.png)
 
-6. Open the "Employee_Edit" page and double-click on the **Save** button. Change the **On-click** event to *Call a microflow* and select *ACT_Employee_Update* so that this microflow will be triggered whenever the information is changed and the **Save** button is clicked.
-7. Run the application and test the functionalities of these buttons to update information in your Snowflake environment.
+6. Open the "Employee_Edit" page and double-click on the **Save** button. Change the **On-click** event to *Call a microflow* and create a new microflow called *ACT_Employee_Update* so that this microflow will be triggered whenever the information is changed and the **Save** button is clicked.
+7. Drag *Emplyee_Update* into *ACT_Employee_Update* from the app explorer and after that drag the *Employee_Retrieve* microflow in there as well. Call the return value of the *Employee_Retrieve* microflow call to *Table*. Add a **Show page** action at the end of the *ACT_Employee_Update* microflow and make it call the *Table_Display* page.
+   
+   ![Placeholder]()
+   
+8. Run the application and test the functionalities of these buttons to update information in your Snowflake environment.
 
 ![Edit Employee Info](assets/employee_edit.png)
 
@@ -330,7 +340,7 @@ Duration: 10
 ![Deploying your Mendix application](assets/publish.png)
 
 9. Add your authentication method in the homepage after logging in.
-10. Go back to Mendix Studio Pro and configure your Snowflake information in *ACT_RetrieveEmployeeInfo* and *ACT_Employee_Update*. 
+10. Go back to Mendix Studio Pro and configure your Snowflake information in *Employee_Retrieve* and *Employee_Update*. 
   
 ![Configure Microflows](assets/configure_snowflake_info.png)
 
