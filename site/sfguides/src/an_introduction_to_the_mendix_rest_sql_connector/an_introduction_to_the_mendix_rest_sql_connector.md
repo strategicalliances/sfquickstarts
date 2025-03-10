@@ -12,13 +12,13 @@ Duration: 5
 
 In this quickstart, we will guide you through the process of setting up a secure connection, retrieving data stored in Snowflake and seamlessly integrating it into a Mendix application.
 
-[Mendix](https://www.mendix.com/snowflake/) is a low code application development platform that will allow you to quickly easily develop enterprise applications. Compared to [Snowflake native apps](https://docs.snowflake.com/en/developer-guide/native-apps/native-apps-about) built with [Streamlit](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit), Mendix allows for more custom user interfaces and multi-experiences for all forms of interaction like websites and mobile applications. Mendix applications typically support full workflows for business applications and support multiple deployment options, including public cloud, private cloud, on-premises and on-edge deployment.
+[Mendix](https://www.mendix.com/snowflake/) is a low code application development platform that will allow you to quickly and easily develop enterprise applications. Compared to [Snowflake native apps](https://docs.snowflake.com/en/developer-guide/native-apps/native-apps-about) built with [Streamlit](https://docs.snowflake.com/en/developer-guide/streamlit/about-streamlit), Mendix allows for more custom user interfaces and multi-experiences for all forms of interaction like websites and mobile applications. Mendix applications typically support full workflows for business applications and support multiple deployment options, including public cloud, private cloud, on-premises and on-edge deployment.
 
 Streamlit is tailored for developers and data analysts, requiring Python expertise to create dashboards. In contrast, Mendix focuses more on business applications, enabling users to build mobile-ready apps and responsive websites without any coding. Additionally, the Mendix Marketplace offers a wide range of ready-to-use frontend widgets and connectors.
 
 ![Mendix Snowflake Connectors](assets/mendix_snowflake_connectors.png)
 
-This quickstart will equip you with the knowledge and tools needed to achieve seamless data integration between Mendix and Snowflake. Within Mendix two Snowflake connectors are provided, the [External Database Connector](https://marketplace.mendix.com/link/component/219862) and the [Snowflake REST SQL Connector](https://marketplace.mendix.com/link/component/225717)connecting Mendix to Snowflake. Conversely, Mendix has developed the Mendix Data Loader, connecting a Snowflake environment to a Mendix application. To learn more about the Mendix Data Loader, see [Mendix Data Loader Quickstart](https://quickstarts.snowflake.com/guide/mendix_data_loader/index.html#0).
+This quickstart will equip you with the knowledge and tools needed to achieve seamless data integration between Mendix and Snowflake. Within Mendix two Snowflake connectors are provided, the [External Database Connector](https://marketplace.mendix.com/link/component/219862) and the [Snowflake REST SQL Connector](https://marketplace.mendix.com/link/component/225717) connecting Mendix to Snowflake. Conversely, Mendix has developed the Mendix Data Loader, connecting a Snowflake environment to a Mendix application. To learn more about the Mendix Data Loader, see [Mendix Data Loader Quickstart](https://quickstarts.snowflake.com/guide/mendix_data_loader/index.html#0).
 
 This quickstart will focus on the Snowflake REST SQL Connector.
 
@@ -42,7 +42,7 @@ For Snowflake Cortex related functionalities, the account used must be in a regi
 - A Mendix account, sign up [here](https://signup.mendix.com/).
 - Mendix Studio Pro [9.24.2](https://marketplace.mendix.com/link/studiopro/9.24.2) or later (Note that for the purposes of this quickstart we recommend to use Mendix Studio Pro version 9.24.2).
 - A [Snowflake](https://www.snowflake.com/) account
-- If you get stuck on some steps in this quickstart we advice to do the [Rapid developer learning paths](https://academy.mendix.com/link/paths) or use the provided .mpk files. (Optional)
+- If you get stuck on some steps in this quickstart we advice to do the [Rapid developer learning paths](https://academy.mendix.com/link/paths) or use the .mpk files provided in this quickstart. (Optional)
 
 ### What You’ll Build
 - A basic Mendix application with method to communicate with Snowflake
