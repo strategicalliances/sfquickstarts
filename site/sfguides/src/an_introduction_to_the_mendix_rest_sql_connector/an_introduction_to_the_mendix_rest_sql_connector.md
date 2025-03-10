@@ -99,7 +99,7 @@ When the download is completed, some errors will occur because dependency module
 
 We have included a few .mpk files where previous steps have been implemented which you can use as a reference or when you get stuck along the way. The certificate you need to connect to Snowflake environment isn't included for obvious reasons and connection details will have to be configured in any of these .mpk files.
 
-[Download .mpk](assets/REST_SQL_Quickstart.mpk "download")
+[Download first .mpk](assets/REST_SQL_Quickstart.mpk "download")
 
 If you are not using Mendix Studio Pro 9,24,2 you might get some errors that need to be solved before you can continue due to migration of the downloaded appstore modules. Navigate to the **Errors** panel and resolve the errors (most likely by right clicking on them and updating widgets).
 
@@ -119,7 +119,7 @@ To make it easier for users to configure the key-pair authentication in a Mendix
      - If security has been enabled in the application, to be able to use the functionality in this snippet, give your user role access by assigning the module role **SnowflakeRESTSQL.Administrator** to the application roles that will be used to set up the configuration.
      - Run the application and then *View App*.
 
-       Place holder text for .mpk 2 with page implemented.
+       [Download second .mpk](assets/REST_SQL_Quickstart_2.mpk "download")
        
      - ![Run Mendix Application](assets/run_application.png)
      - Go to the page where you added the snippet
@@ -241,7 +241,7 @@ Employee
      -  Click **New** to add a new Member and choose the association *MyFirstModule.Employee_Table*. Set the value as *$NewTable*.
 - Set the *$NewTable* variable as return value of the microflow by right clicking the **Create Table** action and choosing the **Set $NewTable as return value** option.
   
-![Retrieve Employee Info](assets/retrieve_employee_info.png)
+![Retrieve Employee Info](assets/Employee_Retrieve.png)
 
 5. As the microflow is almost complete, let's prepare the display.
 - Create a new Blank page and call it **Table_Display**.
@@ -259,14 +259,14 @@ Employee
 6. We have now configured the microflow to retrieve information from the table and the page that will be used to diplay this information. Now, we need to add an action button that will trigger the retrieve call to Snowflake and will open the **Table_Display** page. Open the page **Home_Web** and add a **Call microflow button**  widget from the **Toolbox**. Choose *ACT_Employee_RetrieveAndShow* as the microflow to trigger and rename it to *Retrieve and Show Employee Info*.
 7. Double click the *Employee_Retrieve* microflow call action and in the *output* section set the object name to *Table* and press *OK*. At the end of the *ACT_Employee_RetrieveAndShow* microflow add a **Show page** operation and select the *Table Display* page and press OK.
 
-![Placeholder ACT_Employee_RetrieveAndShow](assets/table_display.png)
+![Retrieve and show Employee](assets/ACT_Employee_RetrieveAndShow.png)
 
 8. In the microflow properties give access to the *User* role to solve the error that has popped up. Now additional errors related to the data view and datagrid on the **Table_Display** page will appear. Solve these by Navigating to the domain model and giving read rights to all attributes of the *Employee* entity by double clicking the entity and navigating to the **Access rules** tab. Here you can create new access rules by pressing the new button and you will need to give all attributes read rights. Since the Table entity doesn't have attributes please give the entity Create rights to solve the errors related to the *Table* entity.
 9. Run the application and click on this button to retrieve and display the employee information from Snowflake.
 
 ![Employee Table](assets/table_display.png)
 
-Placeholder text for .mpk 3. Please remember to configure connection details when using this .mpk.
+[Download thirth .mpk](assets/REST_SQL_Quickstart_3.mpk "download")
 
 <!-- ------------------------ -->
 ## Updating Snowflake Data from Within Mendix
@@ -301,21 +301,20 @@ Now, we will extend our module to be able to edit the existing data in Snowflake
 - The second component is the *Retrieve ConnectionDetails* action. We will also need to configure this to retrieve the authentication method we created on Step 2
    - XPath Constraint: [Name='*name_of_your_connection*']
  - The third and fourth components are to retrieve the authentication token and execute the statement in Snowflake and can stay as they are.
- - The rest of the components can be deleted. 
- - Let's add the microflow we created in Step 4 to the end of this microflow. Then we can retrieve the employee information again and check the changes.
-  
-![Update Employee Info](assets/update_employee_info.png)
+ - The rest of the components can be deleted.
 
-6. Open the "Employee_Edit" page and double-click on the **Save** button. Change the **On-click** event to *Call a microflow* and create a new microflow called *ACT_Employee_Update* so that this microflow will be triggered whenever the information is changed and the **Save** button is clicked.
-7. Drag *Emplyee_Update* into *ACT_Employee_Update* from the app explorer and after that drag the *Employee_Retrieve* microflow in there as well. Call the return value of the *Employee_Retrieve* microflow call to *Table*. Add a **Show page** action at the end of the *ACT_Employee_Update* microflow and make it call the *Table_Display* page.
+    ![ACT_Employee_Update](assets/Employee_Update.png)
+
+7. Open the "Employee_Edit" page and double-click on the **Save** button. Change the **On-click** event to *Call a microflow* and create a new microflow called *ACT_Employee_Update* so that this microflow will be triggered whenever the information is changed and the **Save** button is clicked.
+8. Drag *Employee_Update* into *ACT_Employee_Update* from the app explorer and after that drag the *Employee_Retrieve* microflow in there as well. Call the return value of the *Employee_Retrieve* microflow call to *Table*. Add a **Show page** action at the end of the *ACT_Employee_Update* microflow and make it call the *Table_Display* page.
    
-   ![Placeholder]()
+   ![ACT_Employee_Update](assets/ACT_Employee_Update.png)
    
-8. Run the application and test the functionalities of these buttons to update information in your Snowflake environment.
+9. Run the application and test the functionalities of these buttons to update information in your Snowflake environment.
 
-![Edit Employee Info](assets/employee_edit.png)
+![Edit Employee Info](assets/table_display.png)
 
-Placeholder text for .MPK nr 4
+[Download fourth .mpk](assets/REST_SQL_Quickstart_3.mpk "download")
 
 <!-- ------------------------ -->
 ## (Optional) Deploy the Mendix Application
