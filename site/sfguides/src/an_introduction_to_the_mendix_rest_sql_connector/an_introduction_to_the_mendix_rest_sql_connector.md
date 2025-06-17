@@ -97,10 +97,6 @@ When the download is completed, some errors will occur because dependency module
 
 4. Download the latest [GenAI Commons](https://marketplace.mendix.com/link/component/227933), [Encryption](https://marketplace.mendix.com/link/component/1011) and [Community Commons](https://marketplace.mendix.com/link/component/170) modules into your application from the Mendix Marketplace. To be able to use the functionalities of the Encryption module, the **EncryptionKey** and **EncryptionPrefix** constants must be set, for more detailed information please take a look [here](https://docs.mendix.com/appstore/modules/encryption/#configuration).
 
-We have included a few .mpk files where previous steps have been implemented which you can use as a reference or when you get stuck along the way. The certificate you need to connect to Snowflake environment isn't included for obvious reasons and connection details will have to be configured in any of these .mpk files.
-
-[Download first .mpk](assets/REST_SQL_Quickstart.mpk "download")
-
 If you are not using Mendix Studio Pro 9,24,2 you might get some errors that need to be solved before you can continue due to migration of the downloaded appstore modules. Navigate to the **Errors** panel and resolve the errors (most likely by right clicking on them and updating widgets).
 
 In order to use the capabilities of Snowflake in a Mendix app with the Snowflake REST SQL connector, an authentication method must be set up. For example purposes, we will set up a key-pair authentication method.
@@ -118,8 +114,10 @@ To make it easier for users to configure the key-pair authentication in a Mendix
      - In the **App Explorer**, under the **SnowflakeRESTSQL** section, find the **SNIPPET_SnowflakeConfiguration** snippet and drag and drop it into the page you have just created.
      - If security has been enabled in the application, to be able to use the functionality in this snippet, give your user role access by assigning the module role **SnowflakeRESTSQL.Administrator** to the application roles that will be used to set up the configuration.
      - Run the application and then *View App*.
+  
+       We have included a few .mpk files where previous steps have been implemented which you can use as a reference or when you get stuck along the way. The certificate you need to connect to Snowflake environment isn't included for obvious reasons and connection details will have to be configured in any of these .mpk files.
 
-       [Download second .mpk](assets/REST_SQL_Quickstart_2.mpk "download")
+       [Download first .mpk](assets/REST_SQL_Quickstart.mpk "download")
        
      - ![Run Mendix Application](assets/run_application.png)
      - Go to the page where you added the snippet
@@ -266,7 +264,7 @@ Employee
 
 ![Employee Table](assets/table_display.png)
 
-[Download thirth .mpk](assets/REST_SQL_Quickstart_3.mpk "download")
+[Download second .mpk](assets/REST_SQL_Quickstart_2.mpk "download")
 
 <!-- ------------------------ -->
 ## Updating Snowflake Data from Within Mendix
@@ -314,7 +312,7 @@ Now, we will extend our module to be able to edit the existing data in Snowflake
 
 ![Edit Employee Info](assets/table_display.png)
 
-[Download fourth .mpk](assets/REST_SQL_Quickstart_3.mpk "download")
+[Download third .mpk](assets/REST_SQL_Quickstart_3.mpk "download")
 
 <!-- ------------------------ -->
 ## (Optional) Deploy the Mendix Application
