@@ -42,11 +42,18 @@ For Snowflake Cortex related functionalities, the account used must be in a regi
 - A Mendix account, sign up [here](https://signup.mendix.com/).
 - Mendix Studio Pro [9.24.2](https://marketplace.mendix.com/link/studiopro/9.24.2) or later (Note that for the purposes of this quickstart we recommend to use Mendix Studio Pro version 9.24.2).
 - A [Snowflake](https://www.snowflake.com/) account
-- If you get stuck on some steps in this quickstart we advice to do the [Rapid developer learning paths](https://academy.mendix.com/link/paths) or use the .mpk files provided in this quickstart. (Optional)
+
+### Support Resources
+- If you are new to Mendix it is adviced to first do the [Rapid developer learning paths](https://academy.mendix.com/link/paths)
+- Throughout this quickstart we have included .mpk files that can be opened using Mendix studio pro version 9.25.2 and up. They are Mendix projects that have all steps implemented up to the point where the download link is provided.
+
+To import the .mpk files do the following:
+1. Download the .mpk via the provided download links in this quickstart
+2. Open Mendix studion pro
+3. Click the "Import App Package" button and assign a folder where the project should reside
 
 ### What You’ll Build
 - A basic Mendix application with method to communicate with Snowflake
-
 
 
 
